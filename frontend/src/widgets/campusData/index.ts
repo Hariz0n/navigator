@@ -1,0 +1,1 @@
+export { CampusData } from './ui/campusData'
