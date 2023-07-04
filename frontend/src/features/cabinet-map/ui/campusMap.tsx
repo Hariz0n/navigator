@@ -11,13 +11,13 @@ interface IProps {
   className?: string
 }
 
-const CabinetMap = (props: IProps) => {
+const CampusMap = (props: IProps) => {
   const cabinetData = useStore($campusStore)!
   const [floor, setFloor] = useState(1);
   const vectors = cabinetData.floors.find(el => el.value === floor)!.vectors
-  const lines: React.JSX.Element[] = []
+  const svgs: React.JSX.Element[] = []
   for (let i = 1; i < vectors.length; i++) {
-    lines.push(
+    svgs.push(
       <Line key={i} start={{x: vectors[i-1].x, y: vectors[i-1].y}} end={{x: vectors[i].x, y: vectors[i].y}} />
     )
   }
@@ -33,7 +33,7 @@ const CabinetMap = (props: IProps) => {
              </div>
              <TransformComponent wrapperClass="">
                <Map campusId={cabinetData.campusID} floor={floor}>
-                 {lines}
+                 {svgs}
                </Map>
              </TransformComponent>
            </>
@@ -43,4 +43,4 @@ const CabinetMap = (props: IProps) => {
   );
 };
 
-export default CabinetMap;
+export default CampusMap;

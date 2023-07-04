@@ -2,7 +2,7 @@ import React from 'react';
 import {useStore} from "effector-react";
 import {$campusStore, campusActions} from "@/entities/cabinet/model";
 import classNames from "classnames";
-import CabinetMap from "@/features/cabinet-map/ui/cabinetMap";
+import CampusMap from "@/features/cabinet-map/ui/campusMap";
 import {Map, YMaps} from "@pbe/react-yandex-maps";
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
@@ -27,13 +27,13 @@ export const CampusData = () => {
 
   return (
     <section className={classNames('grid sm:grid-cols-2 gap-8')}>
-      <CabinetMap/>
+      <CampusMap/>
       <div className="p-1 flex flex-col gap-2 col-span-1">
         <h2 className="text-3xl font-bold">Кампус: {campusStore.campusName}</h2>
-        <address className="text-2xl italic">Адрес: 'node'</address>
+        <address className="text-2xl italic">Адрес: очень длинный адресс шо пизда</address>
         <p>{campusStore.description}</p>
       </div>
-      <YMaps>
+      <YMaps query={{lang: 'ru_RU'}} >
         <Map className="w-full h-60 shadow rounded-3xl overflow-hidden col-span-1" state={{center: campusStore.address, zoom: 17}}></Map>
       </YMaps>
     </section>
