@@ -28,7 +28,10 @@ const CampusMap = (props: IProps) => {
            <>
              <div className="flex flex-col border overflow-hidden rounded absolute z-20 top-5 right-5">
                {cabinetData.floors.map(el => el.value).map(value => {
-                 return <button onClick={() => setFloor(value)} key={value} className="border-0 border-b last:border-b-0 px-3 py-1 bg-body-back hover:bg-grays hover:text-white transition">{value}</button>
+                 return <button onClick={() => setFloor(value)} key={value} className={
+                   "border-0 border-b last:border-b-0 px-3 py-1 bg-body-back hover:bg-grays hover:text-white transition" +
+                   (floor === value ? ' bg-grays text-white' : '')
+                 }>{value}</button>
                })}
              </div>
              <TransformComponent wrapperClass="">
