@@ -14,7 +14,7 @@ export const CampusSearch = (props: IProps) => {
   const [campusName, setCampusName] = useState<string>('');
   const campusStore = useStore($campusStore)
   return (
-    <form className={classNames("flex gap-6", props.className)} onSubmit={event => {
+    <form className={classNames("flex flex-wrap gap-2 sm:gap-6", props.className)} onSubmit={event => {
       event.preventDefault()
       campusActions.fetchCampusDataFx(campusName)
     }}>
@@ -24,8 +24,10 @@ export const CampusSearch = (props: IProps) => {
         placeholder='Введите название кабинета'
         className="flex-grow"
       />
-      <Button isSecondary={false} type="submit">Поиск</Button>
-      <Button isSecondary={true} type="reset" onClick={() => {campusActions.clearCampusData()}}>Сброс</Button>
+      <div className="flex gap-6 flex-grow w-full sm:w-auto sm:flex-grow-0 ">
+        <Button className='flex-grow sm:flex-grow-0' isSecondary={false} type="submit">Поиск</Button>
+        <Button className='' isSecondary={true} type="reset" onClick={() => {campusActions.clearCampusData()}}>Сброс</Button>
+      </div>
     </form>
   );
 };

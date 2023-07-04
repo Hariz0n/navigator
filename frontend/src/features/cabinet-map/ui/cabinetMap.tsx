@@ -5,6 +5,7 @@ import Map from "@/entities/map/ui/map";
 import classNames from "classnames";
 import Line from "@/entities/map/ui/line";
 import {CampusFloorSelect} from "@/features/cabinet-floor-select/ui/campusFloorSelect";
+import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
 interface IProps {
   className?: string
@@ -21,12 +22,24 @@ const CabinetMap = (props: IProps) => {
     )
   }
   return (
-    <div className={classNames('relative p-10 rounded-3xl border', props.className)}>
-      <Map campusId={cabinetData.campusID} floor={floor}>
-        {lines}
-      </Map>
-      <CampusFloorSelect setFloor={setFloor} floors={cabinetData.floors.map(el => el.value)}/>
-    </div>
+     <div className='relative col-span-1 row-span-2 w-auto h-auto shadow-xl rounded-3xl overflow-hidden'>
+       <TransformWrapper>
+         {({ }) => (
+           <>
+             <div className="flex flex-col border overflow-hidden rounded absolute z-20 top-5 right-5">
+               {cabinetData.floors.map(el => el.value).map(value => {
+                 return <button onClick={() => setFloor(value)} key={value} className="border-0 border-b last:border-b-0 px-3 py-1 bg-body-back hover:bg-grays hover:text-white transition">{value}</button>
+               })}
+             </div>
+             <TransformComponent wrapperClass="">
+               <Map campusId={cabinetData.campusID} floor={floor}>
+                 {lines}
+               </Map>
+             </TransformComponent>
+           </>
+         )}
+       </TransformWrapper>
+     </div>
   );
 };
 

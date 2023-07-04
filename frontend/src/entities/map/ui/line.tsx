@@ -12,9 +12,8 @@ interface IProp {
 const Line = ({start, end}: IProp) => {
   return (
     <line x1={start.x} y1={start.y} x2={end.x} y2={end.y} style={{
-      stroke: 'red',
-      strokeWidth: 5
-    }} />
+      strokeWidth: 15
+    }} className="stroke-lime animate-pulse" />
   );
 };
 

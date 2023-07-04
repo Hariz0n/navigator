@@ -10,7 +10,7 @@ export const IRIT_MOCK: campusData = {
       value: 1,
       vectors: [
         {x: 0, y: 0},
-        {x: 2000, y: 2000},
+        {x: 1800, y: 1800},
         {x: 1000, y: 2000},
       ]
     },

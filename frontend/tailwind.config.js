@@ -3,12 +3,14 @@ module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
+  important: this,
   theme: {
     colors: {
       'grays': '#353535',
       'white': '#fff',
-      'body-back': '#F4F4F4',
-      'orange': '#ff7d37'
+      'body-back': '#efefef',
+      'orange': '#ff7d37',
+      'lime': '#3aa223'
     },
     extend: {
       backgroundImage: {
