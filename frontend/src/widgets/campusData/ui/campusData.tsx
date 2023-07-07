@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useStore} from "effector-react";
 import {$campusStore, campusActions} from "@/entities/cabinet/model";
 import classNames from "classnames";
@@ -30,11 +30,14 @@ export const CampusData = () => {
       <CampusMap/>
       <div className="p-1 flex flex-col gap-2 col-span-1">
         <h2 className="text-3xl font-bold">Кампус: {campusStore.campusName}</h2>
-        <address className="text-2xl italic">Адрес: очень длинный адресс шо пизда</address>
+        <address className="text-2xl italic">Адрес: очень длинный адресс</address>
         <p>{campusStore.description}</p>
       </div>
       <YMaps query={{lang: 'ru_RU'}} >
-        <Map className="w-full h-60 shadow rounded-3xl overflow-hidden col-span-1" state={{center: campusStore.address, zoom: 17}}></Map>
+        <Map className="w-full h-60 shadow rounded-3xl overflow-hidden col-span-1" state={{center: [
+            campusStore.address.x,
+            campusStore.address.y
+          ], zoom: 17}}></Map>
       </YMaps>
     </section>
   );

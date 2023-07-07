@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useStore} from "effector-react";
 import {$campusStore} from "@/entities/cabinet/model";
 import Map from "@/entities/map/ui/map";
-import classNames from "classnames";
 import Line from "@/entities/map/ui/line";
-import {CampusFloorSelect} from "@/features/cabinet-floor-select/ui/campusFloorSelect";
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
 interface IProps {
@@ -23,12 +21,22 @@ const CampusMap = (props: IProps) => {
   }
   return (
      <div className='relative col-span-1 row-span-2 w-auto h-auto shadow-xl rounded-3xl overflow-hidden'>
-       <TransformWrapper>
-         {({ }) => (
+       <TransformWrapper
+         minScale={0.95}
+         onInit={ref => {
+           ref.zoomToElement('path')
+         }}
+       >
+         {({zoomToElement} ) => (
            <>
              <div className="flex flex-col border overflow-hidden rounded absolute z-20 top-5 right-5">
                {cabinetData.floors.map(el => el.value).map(value => {
-                 return <button onClick={() => setFloor(value)} key={value} className={
+                 return <button onClick={() => {
+                   setFloor(value)
+                   setTimeout(() => {
+                     zoomToElement('path')
+                   }, 300)
+                 }} key={value} className={
                    "border-0 border-b last:border-b-0 px-3 py-1 bg-body-back hover:bg-grays hover:text-white transition" +
                    (floor === value ? ' bg-grays text-white' : '')
                  }>{value}</button>
@@ -36,7 +44,9 @@ const CampusMap = (props: IProps) => {
              </div>
              <TransformComponent wrapperClass="">
                <Map campusId={cabinetData.campusID} floor={floor}>
-                 {svgs}
+                 <g id='path' className='m-5'>
+                   {svgs}
+                 </g>
                </Map>
              </TransformComponent>
            </>

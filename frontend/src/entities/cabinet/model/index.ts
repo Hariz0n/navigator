@@ -4,7 +4,10 @@ import {IRIT_MOCK} from "@/entities/cabinet/model/campus.mock";
 export type campusData = {
   campusID: campus
   campusName: string,
-  address: number[],
+  address: {
+    x: number,
+    y: number
+  },
   description: string,
   floors: flour[]
 }
