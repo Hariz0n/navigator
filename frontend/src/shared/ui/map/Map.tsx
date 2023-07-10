@@ -1,7 +1,7 @@
 import React from 'react';
-import {campus} from "@/entities/campus/lib/campus.type";
+import {campusID} from "@/entities/campus/lib/campus.type";
 
-const map: Record<campus, Record<number, React.ReactNode>> = {
+const map: Record<campusID, Record<number, React.ReactNode>> = {
   'irit': {
     1: (
       <>
@@ -51,13 +51,13 @@ const map: Record<campus, Record<number, React.ReactNode>> = {
 }
 
 interface IProps {
-  campusId: campus,
+  campusId: campusID,
   floor: number,
   className?: string,
   children?: React.ReactNode
 }
 
-const Map = (props: IProps) => {
+export const Map = (props: IProps) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" className="max-w-full h-auto" width={2000} height={2000} viewBox="0 0 2000 2000" fill="none">
       {map[props.campusId][props.floor]}
@@ -65,5 +65,3 @@ const Map = (props: IProps) => {
     </svg>
   )
 };
-
-export default Map;

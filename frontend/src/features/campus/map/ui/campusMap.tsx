@@ -1,27 +1,29 @@
-import React, {useRef, useState} from 'react';
-import {useStore} from "effector-react";
-import {$campusStore} from "@/entities/campus/model";
-import Map from "@/entities/map/ui/map";
-import Line from "@/entities/map/ui/line";
+import React, {FC, useState} from 'react';
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 import classNames from "classnames";
+import {flour} from "@/entities/campus/lib/floor.type";
+import {campusID} from "@/entities/campus/lib/campus.type";
+import {Line} from "@/shared/ui";
+import {Map} from "@/shared/ui";
 
 interface IProps {
-  className?: string
+  className?: string,
+  floors: flour[],
+  campusId: campusID
 }
 
-const CampusMap = (props: IProps) => {
-  const cabinetData = useStore($campusStore)!
+export const CampusMap: FC<IProps> = ({className, floors, campusId}) => {
   const [floor, setFloor] = useState(1);
-  const vectors = cabinetData.cabinet.floors.find(el => el.floor === floor)!.vectors
   const svgPaths: React.JSX.Element[] = []
+  console.log(floors)
+  const vectors = floors.find(fl => fl.floor === floor)!.vectors
   for (let i = 1; i < vectors.length; i++) {
     svgPaths.push(
       <Line key={i} start={{x: vectors[i-1].x, y: vectors[i-1].y}} end={{x: vectors[i].x, y: vectors[i].y}} />
     )
   }
   return (
-     <div className={classNames('w-auto h-auto shadow-xl rounded-3xl overflow-hidden', props.className)}>
+     <div className={classNames('w-auto h-auto shadow relative rounded-3xl overflow-hidden bg-white', className)}>
        <TransformWrapper
          limitToBounds={false}
          minScale={0.95}
@@ -32,7 +34,7 @@ const CampusMap = (props: IProps) => {
          {({zoomToElement} ) => (
            <>
              <div className="flex flex-col border overflow-hidden rounded absolute z-20 top-5 right-5">
-               {cabinetData.cabinet.floors.map(el => el.floor).map(value => {
+               {floors.map(el => el.floor).map(value => {
                  return <button onClick={() => {
                    setFloor(value)
                    setTimeout(() => {
@@ -45,9 +47,11 @@ const CampusMap = (props: IProps) => {
                })}
              </div>
              <TransformComponent wrapperClass="">
-               <Map campusId={cabinetData.campusID} floor={floor}>
+               <Map campusId={campusId} floor={floor}>
                  <g id='path' className='m-5'>
-                   {svgPaths}
+                   {svgPaths.map((svgPath) => (
+                     <>{svgPath}</>
+                   ))}
                  </g>
                </Map>
              </TransformComponent>
@@ -57,5 +61,3 @@ const CampusMap = (props: IProps) => {
      </div>
   );
 };
-
-export default CampusMap;

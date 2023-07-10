@@ -14,7 +14,7 @@ interface IProps {
   wrapperId: string
 }
 
-const Portal = (props: IProps) => {
+export const Portal = (props: IProps) => {
   const [wrapper, setWrapper] = useState<HTMLDivElement | null>(null)
   useLayoutEffect(() => {
     let el = document.getElementById(props.wrapperId)  as HTMLDivElement | null
@@ -34,7 +34,5 @@ const Portal = (props: IProps) => {
 
   if (wrapper === null) return null
 
-  return createPortal(props.children, wrapper)
+  return createPortal(props.children, document.body)
 };
-
-export default Portal;

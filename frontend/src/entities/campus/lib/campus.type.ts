@@ -1,1 +1,1 @@
-export type campus = 'irit'
+export type campusID = 'irit'

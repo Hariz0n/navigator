@@ -6,12 +6,10 @@ interface IProps {
   className?: string
 }
 
-const Container = ({children, className}: IProps) => {
+export const Container = ({children, className}: IProps) => {
   return (
     <div className={classNames("container mx-auto px-4", className)}>
       {children}
     </div>
   );
 };
-
-export default Container;

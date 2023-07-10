@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from "@/shared/ui/container/container";
+import {Container} from "@/shared/ui/container/Container";
 
 export const Footer = () => {
   return (

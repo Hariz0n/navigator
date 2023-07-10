@@ -1,8 +1,8 @@
-import {campus} from "@/entities/campus/lib/campus.type";
+import {campusID} from "@/entities/campus/lib/campus.type";
 import {flour} from "@/entities/campus/lib/floor.type";
 
 export type campusData = {
-  campusID: campus
+  campusID: campusID
   campusName: string,
   addressCampus: {
     x: number,

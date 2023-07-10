@@ -1,4 +1,4 @@
-export type cabinet = {
+export type cabinetSearch = {
   id: number,
   numberCabinet: string
 }

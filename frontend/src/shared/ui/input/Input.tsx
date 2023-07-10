@@ -10,7 +10,7 @@ interface IProps {
   refData?: React.Ref<HTMLInputElement>
 }
 
-const Input = (props: IProps) => {
+export const Input = (props: IProps) => {
   return (
     <input
       ref={props.refData}
@@ -23,5 +23,3 @@ const Input = (props: IProps) => {
     />
   );
 };
-
-export default Input;

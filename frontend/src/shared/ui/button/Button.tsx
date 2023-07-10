@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from 'react';
+import React from 'react';
 import classNames from "classnames";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
   children: React.ReactNode
 }
 
-const Button = (props: IProps) => {
+export const Button = (props: IProps) => {
   return (
     <button
       type={props.type}
@@ -24,5 +24,3 @@ const Button = (props: IProps) => {
     </button>
   );
 };
-
-export default Button;
