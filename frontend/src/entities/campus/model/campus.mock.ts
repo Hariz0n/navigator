@@ -1,4 +1,4 @@
-import {campusData} from "@/entities/cabinet/model/index";
+import {campusData} from "@/entities/campus/model/index";
 
 // export const req = {
 //   id: number,

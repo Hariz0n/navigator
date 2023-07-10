@@ -1,9 +1,10 @@
 import React, {useRef, useState} from 'react';
 import {useStore} from "effector-react";
-import {$campusStore} from "@/entities/cabinet/model";
+import {$campusStore} from "@/entities/campus/model";
 import Map from "@/entities/map/ui/map";
 import Line from "@/entities/map/ui/line";
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
+import classNames from "classnames";
 
 interface IProps {
   className?: string
@@ -12,16 +13,17 @@ interface IProps {
 const CampusMap = (props: IProps) => {
   const cabinetData = useStore($campusStore)!
   const [floor, setFloor] = useState(1);
-  const vectors = cabinetData.floors.find(el => el.value === floor)!.vectors
-  const svgs: React.JSX.Element[] = []
+  const vectors = cabinetData.cabinet.floors.find(el => el.floor === floor)!.vectors
+  const svgPaths: React.JSX.Element[] = []
   for (let i = 1; i < vectors.length; i++) {
-    svgs.push(
+    svgPaths.push(
       <Line key={i} start={{x: vectors[i-1].x, y: vectors[i-1].y}} end={{x: vectors[i].x, y: vectors[i].y}} />
     )
   }
   return (
-     <div className='relative col-span-1 row-span-2 w-auto h-auto shadow-xl rounded-3xl overflow-hidden'>
+     <div className={classNames('w-auto h-auto shadow-xl rounded-3xl overflow-hidden', props.className)}>
        <TransformWrapper
+         limitToBounds={false}
          minScale={0.95}
          onInit={ref => {
            ref.zoomToElement('path')
@@ -30,7 +32,7 @@ const CampusMap = (props: IProps) => {
          {({zoomToElement} ) => (
            <>
              <div className="flex flex-col border overflow-hidden rounded absolute z-20 top-5 right-5">
-               {cabinetData.floors.map(el => el.value).map(value => {
+               {cabinetData.cabinet.floors.map(el => el.floor).map(value => {
                  return <button onClick={() => {
                    setFloor(value)
                    setTimeout(() => {
@@ -45,7 +47,7 @@ const CampusMap = (props: IProps) => {
              <TransformComponent wrapperClass="">
                <Map campusId={cabinetData.campusID} floor={floor}>
                  <g id='path' className='m-5'>
-                   {svgs}
+                   {svgPaths}
                  </g>
                </Map>
              </TransformComponent>

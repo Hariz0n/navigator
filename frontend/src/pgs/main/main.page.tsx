@@ -4,7 +4,7 @@ import Container from "@/shared/ui/container/container";
 import Input from "@/shared/ui/input/input";
 import {CampusSearch} from "@/features/cabinet-search";
 import {useStore} from "effector-react";
-import {$campusStore} from "@/entities/cabinet/model";
+import {$campusStore} from "../../entities/campus/model";
 import {CampusData} from "@/widgets/campusData";
 
 const MainPage = () => {

@@ -6,12 +6,14 @@ interface IProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   id?: string;
   className?: string;
-  name: string
+  name: string,
+  refData?: React.Ref<HTMLInputElement>
 }
 
 const Input = (props: IProps) => {
   return (
     <input
+      ref={props.refData}
       onChange={event => props.onChange(event)}
       placeholder={props.placeholder}
       type="text"

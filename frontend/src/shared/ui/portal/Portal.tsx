@@ -1,6 +1,6 @@
+"use client"
 import {createPortal} from "react-dom";
 import React, {useLayoutEffect, useState} from "react";
-import {element} from "prop-types";
 
 function createWrapperAndAppendToBody(wrapperId: string) {
   const wrapperElement = document.createElement('div');
@@ -17,7 +17,7 @@ interface IProps {
 const Portal = (props: IProps) => {
   const [wrapper, setWrapper] = useState<HTMLDivElement | null>(null)
   useLayoutEffect(() => {
-    let el = document.getElementById(props.wrapperId) as HTMLDivElement | null;
+    let el = document.getElementById(props.wrapperId)  as HTMLDivElement | null
     let systemCreated = false;
     if (!el) {
       systemCreated = true;

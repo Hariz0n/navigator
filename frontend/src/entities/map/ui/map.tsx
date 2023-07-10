@@ -1,5 +1,5 @@
 import React from 'react';
-import {campus} from "@/entities/cabinet/model";
+import {campus} from "@/entities/campus/lib/campus.type";
 
 const map: Record<campus, Record<number, React.ReactNode>> = {
   'irit': {

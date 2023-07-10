@@ -1,41 +1,18 @@
+import {cabinet} from "@/entities/cabinet/lib/cabinet.type";
 import {createEffect, createEvent, createStore} from "effector";
-import {IRIT_MOCK} from "@/entities/cabinet/model/campus.mock";
 
-export type campusData = {
-  campusID: campus
-  campusName: string,
-  address: {
-    x: number,
-    y: number
-  },
-  description: string,
-  floors: flour[]
-}
-
-export type flour = {
-  value: number,
-  vectors: vector[]
-}
-
-export type vector = {
-  x: number,
-  y: number
-}
-
-export type campus = 'irit'
-
-const fetchCampusDataFx = createEffect<string, campusData>(async params => {
-  return IRIT_MOCK
+const fetchSearchCabinets = createEffect<string, cabinet[]>(async searchString => {
+  const response = await fetch(`http://localhost:8080/api/campus/cabinets/list?value=${searchString}`)
+  return await response.json()
 })
 
-const clearCampusData = createEvent()
+const clearSearchResults = createEvent()
 
-export const $campusStore = createStore<campusData | null>(null)
-  .on(fetchCampusDataFx.doneData, (state, payload) => payload)
-  .on(clearCampusData, state => null)
+export const $cabinetsSearchStore = createStore<cabinet[] | null>([])
+  .on(clearSearchResults, state => null)
+  .on(fetchSearchCabinets.doneData, (state, cabinets) => cabinets)
 
-export const campusActions = {
-  clearCampusData,
-  fetchCampusDataFx
+export const cabinetActions = {
+  fetchSearchCabinets,
+  clearSearchResults
 }
-
