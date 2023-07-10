@@ -1,1 +1,1 @@
-export {CabinetSearch} from './search'
+export { CabinetSearch } from "./search";

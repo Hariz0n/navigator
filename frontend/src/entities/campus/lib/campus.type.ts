@@ -1,1 +1,1 @@
-export type campusID = 'irit'
+export type campusID = "irit";

@@ -1,1 +1,1 @@
-export {CampusMap} from './map'
+export { CampusMap } from "./map";

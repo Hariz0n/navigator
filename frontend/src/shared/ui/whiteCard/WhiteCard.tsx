@@ -1,14 +1,19 @@
-import React, {FC} from 'react';
+import React, { FC } from "react";
 import classNames from "classnames";
 
 interface IProps {
-  className?: string,
-  children: React.ReactNode
+  className?: string;
+  children: React.ReactNode;
 }
 
-export const WhiteCard: FC<IProps> = ({className, children}) => {
+export const WhiteCard: FC<IProps> = ({ className, children }) => {
   return (
-    <div className={classNames("bg-white rounded-3xl p-5 shadow flex flex-col gap-4", className)}>
+    <div
+      className={classNames(
+        "flex flex-col gap-4 rounded-3xl bg-white p-5 shadow",
+        className
+      )}
+    >
       {children}
     </div>
   );

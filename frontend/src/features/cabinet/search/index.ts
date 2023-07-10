@@ -1,1 +1,1 @@
-export {CabinetSearch} from './ui/cabinetSearch'
+export { CabinetSearch } from "./ui/cabinetSearch";

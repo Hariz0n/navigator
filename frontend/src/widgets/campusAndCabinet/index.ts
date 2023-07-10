@@ -1,1 +1,1 @@
-export { CampusAndCabinet } from './ui/campusAndCabinet'
+export { CampusAndCabinet } from "./ui/campusAndCabinet";

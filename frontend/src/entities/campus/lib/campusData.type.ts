@@ -1,17 +1,17 @@
-import {campusID} from "@/entities/campus/lib/campus.type";
-import {flour} from "@/entities/campus/lib/floor.type";
+import { campusID } from "@/entities/campus/lib/campus.type";
+import { flour } from "@/entities/campus/lib/floor.type";
 
 export type campusData = {
-  campusID: campusID
-  campusName: string,
+  campusID: campusID;
+  campusName: string;
   addressCampus: {
-    x: number,
-    y: number
-  },
+    x: number;
+    y: number;
+  };
   cabinet: {
-    numberCabinet: string,
-    descriptionCabinet: string,
-    floors: flour[]
-  }
-  descriptionCampus: string
-}
+    numberCabinet: string;
+    descriptionCabinet: string;
+    floors: flour[];
+  };
+  descriptionCampus: string;
+};

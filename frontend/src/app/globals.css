@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 .react-transform-wrapper {
-    width: 100% !important;
-    height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 #select {
-    margin-top: -1.25rem;
+  margin-top: -1.25rem;
 }

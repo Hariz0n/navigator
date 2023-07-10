@@ -1,4 +1,4 @@
 export type cabinetSearch = {
-  id: number,
-  numberCabinet: string
-}
+  id: number;
+  numberCabinet: string;
+};

@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "front-dev": "next dev",
-    "front-build": "next build",
-    "front-start": "next start",
-    "front-lint": "next lint"
+    "front:dev": "next dev",
+    "front:build": "next build",
+    "front:start": "next start",
+    "front:lint": "next lint",
+    "front:format": "prettier --check --ignore-path .gitignore src",
+    "front:format:fix": "prettier --write --ignore-path .gitignore src"
   },
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.4",
@@ -28,6 +30,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^8.8.0"
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.3.0"
   }
 }
