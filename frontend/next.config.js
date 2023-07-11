@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://spring-boot:8080/api/:path*'
+      }
+    ]
+  },
   async headers() {
     return [
       {

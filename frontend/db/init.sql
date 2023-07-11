@@ -1,0 +1,1 @@
+CREATE TABLE web_service_one_course;
