@@ -10,7 +10,8 @@ module.exports = {
       'white': '#fff',
       'body-back': '#efefef',
       'orange': '#ff7d37',
-      'lime': '#3aa223'
+      'lime': '#3aa223',
+      'lightgray': '#c9c9c9'
     },
     extend: {
       backgroundImage: {

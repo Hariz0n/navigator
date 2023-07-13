@@ -34,7 +34,7 @@ export const CampusAndCabinet = () => {
         <CampusInfo
           name={campusName}
           description={descriptionCampus}
-          address={addressCampus.x.toString()}
+          address={addressCampus}
         />
       </WhiteCard>
       <WhiteCard>
