@@ -6,3 +6,4 @@ export { WhiteCard } from "./whiteCard/WhiteCard";
 export { SearchSelect } from "./searchSelect/SearchSelect";
 export { Map } from "./map/Map";
 export { Line } from "./map/Line";
+export { Stairs } from "./map/Stairs";

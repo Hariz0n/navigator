@@ -3,7 +3,7 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import classNames from "classnames";
 import { flour } from "@/entities/campus/lib/floor.type";
 import { campusID } from "@/entities/campus/lib/campus.type";
-import { Line } from "@/shared/ui";
+import { Line, Stairs } from "@/shared/ui";
 import { Map } from "@/shared/ui";
 
 interface IProps {
@@ -25,6 +25,10 @@ export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
         end={{ x: vectors[i].x, y: vectors[i].y }}
       />
     );
+  }
+  if (floors[floor]) {
+    const lastVector = vectors[vectors.length - 1]
+    svgPaths.push(<Stairs x={lastVector.x} y={lastVector.y} value={floors[floor].floor} />)
   }
   return (
     <div
