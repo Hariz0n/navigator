@@ -14,22 +14,7 @@ interface IProps {
 
 export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
   const [floor, setFloor] = useState(1);
-  const svgPaths: React.JSX.Element[] = [];
-  console.log(floors);
   const vectors = floors.find((fl) => fl.floor === floor)!.vectors;
-  for (let i = 1; i < vectors.length; i++) {
-    svgPaths.push(
-      <Line
-        key={i}
-        start={{ x: vectors[i - 1].x, y: vectors[i - 1].y }}
-        end={{ x: vectors[i].x, y: vectors[i].y }}
-      />
-    );
-  }
-  if (floors[floor]) {
-    const lastVector = vectors[vectors.length - 1]
-    svgPaths.push(<Stairs x={lastVector.x} y={lastVector.y} value={floors[floor].floor} />)
-  }
   return (
     <div
       className={classNames(
@@ -72,9 +57,17 @@ export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
             <TransformComponent wrapperClass=''>
               <Map campusId={campusId} floor={floor}>
                 <g id='path' className='m-5'>
-                  {svgPaths.map((svgPath) => (
-                    <>{svgPath}</>
-                  ))}
+                  {vectors.map((vector, i, vectors) => {
+                    if (!i) return
+                    return (
+                      <Line
+                        key={i}
+                        start={{ x: vectors[i - 1].x, y: vectors[i - 1].y }}
+                        end={{ x: vectors[i].x, y: vectors[i].y }}
+                      />
+                    )
+                  })}
+                  {!!floors[floor] && <Stairs key="stairs" x={vectors[vectors.length - 1].x} y={vectors[vectors.length - 1].y} value={floors[floor].floor} />}
                 </g>
               </Map>
             </TransformComponent>
