@@ -5,7 +5,7 @@ const clearSearchResults = createEvent();
 
 const fetchSearchCabinets = createEffect<string, cabinetSearch[]>(
   async (searchString) => {
-    clearSearchResults()
+    clearSearchResults();
     const response = await fetch(
       `/api/campus/cabinets/list?value=${searchString}`
     );

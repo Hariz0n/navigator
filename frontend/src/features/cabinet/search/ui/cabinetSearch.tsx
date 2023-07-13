@@ -15,7 +15,7 @@ export const CabinetSearch: FC<IProps> = ({ className }) => {
   const searchStore = useStore($cabinetsSearchStore);
   const onTextInputCallback = useCallback((value: string) => {
     if (!value) {
-      campusActions.clearCampusData()
+      campusActions.clearCampusData();
     } else {
       cabinetActions.fetchSearchCabinets(value);
     }
@@ -36,7 +36,7 @@ export const CabinetSearch: FC<IProps> = ({ className }) => {
             : searchStore.map((el) => ({
                 value: String(el.id),
                 displayName: el.numberCabinet,
-                alias: el.description
+                alias: el.description,
               }))
         }
         onSelect={(id) => campusActions.fetchCampusDataFx(Number(id))}

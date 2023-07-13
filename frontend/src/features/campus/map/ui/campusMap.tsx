@@ -58,16 +58,23 @@ export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
               <Map campusId={campusId} floor={floor}>
                 <g id='path' className='m-5'>
                   {vectors.map((vector, i, vectors) => {
-                    if (!i) return
+                    if (!i) return;
                     return (
                       <Line
                         key={i}
                         start={{ x: vectors[i - 1].x, y: vectors[i - 1].y }}
                         end={{ x: vectors[i].x, y: vectors[i].y }}
                       />
-                    )
+                    );
                   })}
-                  {!!floors[floor] && <Stairs key="stairs" x={vectors[vectors.length - 1].x} y={vectors[vectors.length - 1].y} value={floors[floor].floor} />}
+                  {!!floors[floor] && (
+                    <Stairs
+                      key='stairs'
+                      x={vectors[vectors.length - 1].x}
+                      y={vectors[vectors.length - 1].y}
+                      value={floors[floor].floor}
+                    />
+                  )}
                 </g>
               </Map>
             </TransformComponent>

@@ -8,11 +8,11 @@ import { $campusStore } from "@/entities/campus/model";
 import { Introduction } from "@/widgets/introduction";
 
 const MainPage = () => {
-  const campus = useStore($campusStore)
+  const campus = useStore($campusStore);
   return (
     <Container className='flex flex-col gap-8'>
       <CabinetSearch />
-      {campus ? <CampusAndCabinet /> : <Introduction/>}
+      {campus ? <CampusAndCabinet /> : <Introduction />}
     </Container>
   );
 };
