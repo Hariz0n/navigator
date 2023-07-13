@@ -32,6 +32,7 @@ export const CabinetSearch: FC<IProps> = ({ className }) => {
             : searchStore.map((el) => ({
                 value: String(el.id),
                 displayName: el.numberCabinet,
+                alias: el.description
               }))
         }
         onSelect={(id) => campusActions.fetchCampusDataFx(Number(id))}
