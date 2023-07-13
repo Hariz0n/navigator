@@ -5,6 +5,7 @@ import { Portal } from "@/shared/ui/portal/Portal";
 type selectItem = {
   value: string;
   displayName: string;
+  alias: string;
 };
 interface IProps {
   name: string;
@@ -56,6 +57,7 @@ export const SearchSelect: FC<IProps> = ({
       document.removeEventListener("mousedown", closeOnOutsideClick);
       document.removeEventListener("scroll", closeOnScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue, onTextInput]);
 
   return (
@@ -104,7 +106,7 @@ export const SearchSelect: FC<IProps> = ({
                   <h4 className='text-bold cursor-pointer text-2xl'>
                     {select.displayName.toUpperCase()}
                   </h4>
-                  <p className='text-sm'>Cisco, компьютерный класс</p>
+                  <p className='text-sm'>{select.alias}</p>
                 </li>
               ))}
           </ul>

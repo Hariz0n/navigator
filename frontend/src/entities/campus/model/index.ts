@@ -4,7 +4,7 @@ import { campusData } from "@/entities/campus/lib/campusData.type";
 const fetchCampusDataFx = createEffect<number, campusData>(
   async (cabinetId) => {
     const response = await fetch(
-      `http://192.168.1.111:8080/api/campus/cabinets/cabinet?numberID=${cabinetId}`
+      `/api/campus/cabinets/cabinet?numberID=${cabinetId}`
     );
     return await response.json();
   }

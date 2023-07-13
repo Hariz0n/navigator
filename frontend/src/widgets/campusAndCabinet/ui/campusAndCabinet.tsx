@@ -34,13 +34,13 @@ export const CampusAndCabinet = () => {
         <CampusInfo
           name={campusName}
           description={descriptionCampus}
-          address={addressCampus.x.toString()}
+          address={addressCampus}
         />
       </WhiteCard>
       <WhiteCard>
         <Steps
           cabinetName={numberCabinet}
-          stepsList={campusStore.cabinet.floors.map((fl) => fl.descriptionStep)}
+          stepsList={campusStore.cabinet.steps}
         />
       </WhiteCard>
       <YandexMap

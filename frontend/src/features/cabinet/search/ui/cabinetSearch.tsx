@@ -14,7 +14,11 @@ interface IProps {
 export const CabinetSearch: FC<IProps> = ({ className }) => {
   const searchStore = useStore($cabinetsSearchStore);
   const onTextInputCallback = useCallback((value: string) => {
-    value && cabinetActions.fetchSearchCabinets(value);
+    if (!value) {
+      campusActions.clearCampusData();
+    } else {
+      cabinetActions.fetchSearchCabinets(value);
+    }
   }, []);
   return (
     <form
@@ -32,6 +36,7 @@ export const CabinetSearch: FC<IProps> = ({ className }) => {
             : searchStore.map((el) => ({
                 value: String(el.id),
                 displayName: el.numberCabinet,
+                alias: el.description,
               }))
         }
         onSelect={(id) => campusActions.fetchCampusDataFx(Number(id))}
