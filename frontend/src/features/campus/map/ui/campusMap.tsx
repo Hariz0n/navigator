@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import classNames from "classnames";
 import { flour } from "@/entities/campus/lib/floor.type";
@@ -13,8 +13,8 @@ interface IProps {
 }
 
 export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
-  const [floor, setFloor] = useState(1);
-  const vectors = floors.find((fl) => fl.floor === floor)!.vectors;
+  const [floor, setFloor] = useState(floors[0].floor);
+  const vectors = floors.find((fl) => fl.floor === floor)?.vectors || [];
   return (
     <div
       className={classNames(
@@ -57,7 +57,7 @@ export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
             <TransformComponent wrapperClass=''>
               <Map campusId={campusId} floor={floor}>
                 <g id='path' className='m-5'>
-                  {vectors.map((vector, i, vectors) => {
+                  {vectors.length ? vectors.map((vector, i, vectors) => {
                     if (!i) return;
                     return (
                       <Line
@@ -66,7 +66,13 @@ export const CampusMap: FC<IProps> = ({ className, floors, campusId }) => {
                         end={{ x: vectors[i].x, y: vectors[i].y }}
                       />
                     );
-                  })}
+                  }): (() => {
+                    setFloor(1)
+                    setTimeout(() => {
+                      zoomToElement("path");
+                    }, 300);
+                    return null
+                  })()}
                   {!!floors[floor] && (
                     <Stairs
                       key='stairs'

@@ -11,18 +11,12 @@ interface IProps {
 
 export const Info: FC<IProps> = ({ name, description, address }) => {
   const [addressFull, setAddressFull] = useState<string | null>(null);
-  console.log(address);
   useEffect(() => {
     fetch(
       `https://geocode-maps.yandex.ru/1.x/?apikey=${process.env.NEXT_PUBLIC_YAPI_KEY}&geocode=${address.y},${address.x}&format=json`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        console.log(
-          data.response.GeoObjectCollection.metaDataProperty
-            .GeocoderResponseMetaData
-        );
         if (
           +data.response.GeoObjectCollection.metaDataProperty
             .GeocoderResponseMetaData.found === 0
