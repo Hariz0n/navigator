@@ -1,12 +1,5 @@
 import { campusData } from "@/entities/campus/lib/campusData.type";
 
-type cabs = {
-  id: number;
-  letter: string;
-  num: number;
-  alias: string;
-}[];
-
 export const IRIT_MOCK: campusData = {
   campusID: "irit",
   campusName: "ИРИТ-РТФ",
