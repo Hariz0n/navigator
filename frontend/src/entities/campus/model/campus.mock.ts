@@ -39,6 +39,7 @@ export const IRIT_MOCK: campusData = {
       },
     ],
     descriptionCabinet: "",
+    steps: []
   },
   addressCampus: {
     x: 56.84085855450857,

@@ -40,7 +40,7 @@ export const CampusAndCabinet = () => {
       <WhiteCard>
         <Steps
           cabinetName={numberCabinet}
-          stepsList={campusStore.cabinet.floors.map((fl) => fl.descriptionStep)}
+          stepsList={campusStore.cabinet.steps}
         />
       </WhiteCard>
       <YandexMap

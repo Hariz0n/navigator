@@ -14,7 +14,11 @@ interface IProps {
 export const CabinetSearch: FC<IProps> = ({ className }) => {
   const searchStore = useStore($cabinetsSearchStore);
   const onTextInputCallback = useCallback((value: string) => {
-    value && cabinetActions.fetchSearchCabinets(value);
+    if (!value) {
+      campusActions.clearCampusData()
+    } else {
+      cabinetActions.fetchSearchCabinets(value);
+    }
   }, []);
   return (
     <form

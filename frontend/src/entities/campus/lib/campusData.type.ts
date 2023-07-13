@@ -12,6 +12,7 @@ export type campusData = {
     numberCabinet: string;
     descriptionCabinet: string;
     floors: flour[];
+    steps: string[]
   };
   descriptionCampus: string;
 };
